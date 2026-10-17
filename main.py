@@ -19,7 +19,8 @@ from src.model import build_convrp_model
 from src.experiments import (
     compute_continuous_relaxation,
     run_solver_benchmarks,
-    run_parameter_tuning
+    run_parameter_tuning,
+    run_all_experiments
 )
 from src.sensitivity import run_capacity_sensitivity_analysis
 
@@ -37,7 +38,7 @@ def main():
     parser.add_argument(
         "--mode",
         type=str,
-        choices=["solve", "relax", "benchmark", "tune", "sensitivity"],
+        choices=["solve", "relax", "benchmark", "tune", "sensitivity", "all"],
         default="solve",
         help="Modo de ejecucion del programa."
     )
@@ -46,6 +47,12 @@ def main():
         type=int,
         default=120,
         help="Limite de tiempo en segundos para model.tune()."
+    )
+    parser.add_argument(
+        "--out-dir",
+        type=str,
+        default=None,
+        help="Carpeta de resultados para --mode all (por defecto results/<instancia>)."
     )
 
     args = parser.parse_args()
@@ -106,6 +113,15 @@ def main():
             print("\nResultados de Tuning:")
             for k, v in tune_res.items():
                 print(f"  {k}: {v}")
+
+        # Modo 6: Benchmark + relajacion + tuning con CSV/JSON
+        elif args.mode == "all":
+            out_dir = args.out_dir or f"results/{data['name']}"
+            summary = run_all_experiments(data, out_dir=out_dir, tune_time_limit=args.tune_time)
+            print(f"\nResultados guardados en {out_dir}/")
+            print(f"  Brecha de integralidad: {summary['relaxation']['integrality_gap_percent']:.2f}%")
+            print(f"  Mejor manual: {summary['best_manual']['configuration']}")
+            print(f"  Parametros tuner: {summary['tuning'].get('best_params')}")
 
         # Modo 5: Analisis de sensibilidad post-optimo
         elif args.mode == "sensitivity":
