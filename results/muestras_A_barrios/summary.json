@@ -1,0 +1,58 @@
+{
+  "instance": "muestras_A_barrios",
+  "relaxation": {
+    "z_lp": 416.46,
+    "z_milp": 982.49,
+    "integrality_gap_percent": 57.611782308216874,
+    "lp_runtime_sec": 0.013000011444091797,
+    "lp_status": "OPTIMAL"
+  },
+  "baseline": {
+    "configuration": "Baseline",
+    "params": "{}",
+    "status": "OPTIMAL",
+    "runtime_sec": 10.145999908447266,
+    "obj_val": 982.49,
+    "obj_bound": 982.45,
+    "mip_gap_percent": 0.004071288257383141,
+    "node_count": 4687.0,
+    "simplex_iters": 109798.0,
+    "sol_count": 10
+  },
+  "best_manual": {
+    "configuration": "Heuristics=0",
+    "params": "{\"Heuristics\": 0}",
+    "status": "OPTIMAL",
+    "runtime_sec": 5.2749998569488525,
+    "obj_val": 982.49,
+    "obj_bound": 982.44,
+    "mip_gap_percent": 0.005089110321728926,
+    "node_count": 2484.0,
+    "simplex_iters": 62525.0,
+    "sol_count": 10
+  },
+  "tuning": {
+    "tune_result_count": 5,
+    "tune_result_index": 1,
+    "tune_time_limit_sec": 900,
+    "best_params": {
+      "BranchDir": -1,
+      "Heuristics": 0.001,
+      "CoverCuts": 2,
+      "PrePasses": 1
+    },
+    "prm_file": "results\\muestras_A_barrios\\best_tune.prm",
+    "rerun": {
+      "configuration": "Tuned",
+      "params": "{\"BranchDir\": -1, \"Heuristics\": 0.001, \"CoverCuts\": 2, \"PrePasses\": 1}",
+      "status": "OPTIMAL",
+      "runtime_sec": 5.958999872207642,
+      "obj_val": 982.49,
+      "obj_bound": 982.49,
+      "mip_gap_percent": 0.0,
+      "node_count": 2330.0,
+      "simplex_iters": 66397.0,
+      "sol_count": 10
+    }
+  }
+}

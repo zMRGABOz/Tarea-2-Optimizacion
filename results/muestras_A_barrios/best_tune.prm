@@ -1,0 +1,5 @@
+BranchDir  -1
+Heuristics  0.001
+CoverCuts  2
+PrePasses  1
+Threads  1

@@ -1,0 +1,4 @@
+configuration,params,status,runtime_sec,obj_val,obj_bound,mip_gap_percent,node_count,simplex_iters,sol_count
+Baseline,{},OPTIMAL,5.177000045776367,1326.65,1326.65,0.0,1389.0,70527.0,10
+Heuristics=0,"{""Heuristics"": 0}",OPTIMAL,4.557999849319458,1326.65,1326.65,0.0,1110.0,56803.0,7
+Tuned,"{""Symmetry"": 2, ""VarBranch"": 1, ""CutPasses"": 5}",OPTIMAL,3.1519999504089355,1326.65,1326.65,0.0,1768.0,66143.0,8

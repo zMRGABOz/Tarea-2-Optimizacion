@@ -1,0 +1,57 @@
+{
+  "instance": "muestras_B_dispersa",
+  "relaxation": {
+    "z_lp": 652.0799999999999,
+    "z_milp": 1326.6499999999999,
+    "integrality_gap_percent": 50.84762371386575,
+    "lp_runtime_sec": 0.01399993896484375,
+    "lp_status": "OPTIMAL"
+  },
+  "baseline": {
+    "configuration": "Baseline",
+    "params": "{}",
+    "status": "OPTIMAL",
+    "runtime_sec": 5.177000045776367,
+    "obj_val": 1326.65,
+    "obj_bound": 1326.65,
+    "mip_gap_percent": 0.0,
+    "node_count": 1389.0,
+    "simplex_iters": 70527.0,
+    "sol_count": 10
+  },
+  "best_manual": {
+    "configuration": "Heuristics=0",
+    "params": "{\"Heuristics\": 0}",
+    "status": "OPTIMAL",
+    "runtime_sec": 4.557999849319458,
+    "obj_val": 1326.65,
+    "obj_bound": 1326.65,
+    "mip_gap_percent": 0.0,
+    "node_count": 1110.0,
+    "simplex_iters": 56803.0,
+    "sol_count": 7
+  },
+  "tuning": {
+    "tune_result_count": 4,
+    "tune_result_index": 1,
+    "tune_time_limit_sec": 900,
+    "best_params": {
+      "Symmetry": 2,
+      "VarBranch": 1,
+      "CutPasses": 5
+    },
+    "prm_file": "results\\muestras_B_dispersa\\best_tune.prm",
+    "rerun": {
+      "configuration": "Tuned",
+      "params": "{\"Symmetry\": 2, \"VarBranch\": 1, \"CutPasses\": 5}",
+      "status": "OPTIMAL",
+      "runtime_sec": 3.1519999504089355,
+      "obj_val": 1326.65,
+      "obj_bound": 1326.65,
+      "mip_gap_percent": 0.0,
+      "node_count": 1768.0,
+      "simplex_iters": 66143.0,
+      "sol_count": 8
+    }
+  }
+}

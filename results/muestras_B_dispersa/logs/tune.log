@@ -1,0 +1,1444 @@
+
+Gurobi 13.0.3 (win64) logging started Sat Oct 17 02:06:43 2026
+
+Set parameter LogFile to value "results\muestras_B_dispersa\logs\tune.log"
+Gurobi Optimizer version 13.0.3 build v13.0.3rc0 (win64 - Windows 11+.0 (26300.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i5-12450H, instruction set [SSE2|AVX|AVX2]
+Thread count: 8 physical cores, 12 logical processors, using up to 1 threads
+
+Non-default parameters:
+TimeLimit  600
+Threads  1
+TuneTimeLimit  900
+
+Start tuning.
+Tune 34 parameters.
+
+Solving model using baseline parameter set with TimeLimit=600s
+
+Total tuning time limit is 900s
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 1...
+
+	Threads 1 (fixed)
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... MIP gap 0.01%
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... MIP gap 0.01%
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... MIP gap 0.01%
+
+Summary candidate parameter set 1 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.31s    4.67s    4.46s    4.82s     0.36    5.31s
+
+-------------------------------------------------------------------------------
+Begin tuning (baseline mean runtime 4.82s)...
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 2...
+
+	Threads 1 (fixed)
+	VarBranch 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.22s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.65s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.48s
+
+Summary candidate parameter set 2 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.22s    4.65s    4.48s    4.78s     0.31    5.22s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 29s (871s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 3...
+
+	Threads 1 (fixed)
+	MIPFocus 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 7.09s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 7.44s
+
+Summary candidate parameter set 3 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     7.09s    7.44s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 43s (857s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 4...
+
+	Threads 1 (fixed)
+	CutPasses 3
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.95s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.06s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.67s
+
+Summary candidate parameter set 4 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.95s    5.06s    4.67s    4.89s     0.16    5.06s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 58s (842s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 5...
+
+	Threads 1 (fixed)
+	Method 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.01s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.69s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.43s
+
+Summary candidate parameter set 5 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.01s    4.69s    4.43s    4.71s     0.23    5.01s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 72s (828s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 6...
+
+	Threads 1 (fixed)
+	MIPFocus 2
+	PreDepRow 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.32s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 6.74s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 7.49s
+
+Summary candidate parameter set 6 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.32s    6.74s    7.49s    6.52s     0.90    7.49s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 92s (808s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 7...
+
+	Threads 1 (fixed)
+	VarBranch 3
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 11.00s (limit)
+
+Summary candidate parameter set 7 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL   11.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 103s (797s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 8...
+
+	Threads 1 (fixed)
+	NoRelHeurTime 4
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 10.32s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 9.31s
+
+Summary candidate parameter set 8 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    10.32s    9.31s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 122s (778s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 9...
+
+	Threads 1 (fixed)
+	PrePasses 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.75s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.98s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 6.31s
+
+Summary candidate parameter set 9 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.75s    3.98s    6.31s    5.01s     0.97    6.31s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 137s (763s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 10...
+
+	Threads 1 (fixed)
+	Cuts 3
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 7.98s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 9.76s
+
+Summary candidate parameter set 10 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     7.98s    9.76s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 155s (745s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 11...
+
+	Threads 1 (fixed)
+	StrongCGCuts 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 6.09s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.99s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 5.15s
+
+Summary candidate parameter set 11 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     6.09s    5.99s    5.15s    5.75s     0.42    6.09s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 172s (728s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 12...
+
+	Threads 1 (fixed)
+	MIPFocus 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 10.33s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 7.99s
+
+Summary candidate parameter set 12 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    10.33s    7.99s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 191s (709s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 13...
+
+	Threads 1 (fixed)
+	Heuristics 0.5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 9.10s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 8.12s
+
+Summary candidate parameter set 13 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     9.10s    8.12s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 208s (692s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 14...
+
+	Threads 1 (fixed)
+	NoRelHeurTime 1
+	Cuts 3
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 10.25s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 11.00s (limit)
+
+Summary candidate parameter set 14 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    10.25s  11.00s*        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 229s (671s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 15...
+
+	Threads 1 (fixed)
+	Symmetry 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.09s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.71s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.47s
+
+Summary candidate parameter set 15 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.09s    4.71s    4.47s    4.76s     0.25    5.09s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 244s (656s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 16...
+
+	Threads 1 (fixed)
+	Cuts 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.98s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.36s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 5.26s
+
+Summary candidate parameter set 16 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.98s    4.36s    5.26s    5.20s     0.66    5.98s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 259s (641s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 17...
+
+	Threads 1 (fixed)
+	Heuristics 0.001
+	MIPFocus 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.93s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 6.92s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 6.83s
+
+Summary candidate parameter set 17 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.93s    6.92s    6.83s    6.56s     0.44    6.92s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.82s (parameter set 1, 0 non-defaults)
+Total elapsed tuning time 279s (621s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 18...
+
+	Threads 1 (fixed)
+	Presolve 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.91s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.40s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.52s
+
+Summary candidate parameter set 18 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.91s    3.40s    4.52s    4.61s     1.03    5.91s
+
+Improvement found:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  improved: mean runtime 4.61s (parameter set 18, 1 non-defaults)
+Total elapsed tuning time 293s (607s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 19...
+
+	Threads 1 (fixed)
+	OBBT 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.94s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.68s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.37s
+
+Summary candidate parameter set 19 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.94s    4.68s    4.37s    4.66s     0.23    4.94s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.61s (parameter set 18, 1 non-defaults)
+Total elapsed tuning time 307s (593s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 20...
+
+	Threads 1 (fixed)
+	Symmetry 2
+	Presolve 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.70s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.43s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.82s
+
+Summary candidate parameter set 20 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.70s    3.43s    4.82s    4.65s     0.93    5.70s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.61s (parameter set 18, 1 non-defaults)
+Total elapsed tuning time 321s (579s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 21...
+
+	Threads 1 (fixed)
+	GomoryPasses 5
+	Presolve 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.55s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 6.14s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.79s
+
+Summary candidate parameter set 21 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.55s    6.14s    4.79s    5.49s     0.55    6.14s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 4.61s (parameter set 18, 1 non-defaults)
+Total elapsed tuning time 337s (563s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 22...
+
+	Threads 1 (fixed)
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.75s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.45s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.63s
+
+Summary candidate parameter set 22 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.75s    3.45s    3.63s    3.61s     0.12    3.75s
+
+Improvement found:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  improved: mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 348s (552s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 23...
+
+	Threads 1 (fixed)
+	BranchDir -1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.72s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.72s
+
+Summary candidate parameter set 23 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.72s    5.72s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 359s (541s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 24...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	NumericFocus 3
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 9.00s (limit)
+
+Summary candidate parameter set 24 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    9.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 368s (532s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 25...
+
+	Threads 1 (fixed)
+	Method 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.22s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.35s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.46s
+
+Summary candidate parameter set 25 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.22s    5.35s    4.46s    5.01s     0.39    5.35s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 383s (517s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 26...
+
+	Threads 1 (fixed)
+	Method 1
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.75s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.34s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.72s
+
+Summary candidate parameter set 26 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.75s    3.34s    3.72s    3.60s     0.19    3.75s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 394s (506s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 27...
+
+	Threads 1 (fixed)
+	Symmetry 2
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.70s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.35s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.58s
+
+Summary candidate parameter set 27 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.70s    3.35s    3.58s    3.54s     0.15    3.70s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 405s (495s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 28...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	AggFill 10
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 8.28s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 9.00s (limit)
+
+Summary candidate parameter set 28 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     8.28s   9.00s*        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 422s (478s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 29...
+
+	Threads 1 (fixed)
+	BranchDir 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.29s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.64s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.93s
+
+Summary candidate parameter set 29 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.29s    4.64s    3.93s    3.95s     0.55    4.64s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 434s (466s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 30...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	PreSparsify 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.75s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.40s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.51s
+
+Summary candidate parameter set 30 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.75s    3.40s    3.51s    3.55s     0.15    3.75s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 445s (455s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 31...
+
+	Threads 1 (fixed)
+	IntegralityFocus 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.11s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.64s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.56s
+
+Summary candidate parameter set 31 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.11s    4.64s    4.56s    4.77s     0.24    5.11s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 459s (441s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 32...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	Aggregate 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.10s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.32s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.65s
+
+Summary candidate parameter set 32 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.10s    3.32s    3.65s    3.69s     0.32    4.10s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 470s (430s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 33...
+
+	Threads 1 (fixed)
+	PreSparsify 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.10s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.61s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.61s
+
+Summary candidate parameter set 33 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.10s    4.61s    4.61s    4.78s     0.23    5.10s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 484s (416s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 34...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	Presolve 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 9.00s (limit)
+
+Summary candidate parameter set 34 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    9.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 493s (407s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 35...
+
+	Threads 1 (fixed)
+	Method 1
+	MIPFocus 1
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 9.00s (limit)
+
+Summary candidate parameter set 35 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    9.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 502s (398s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 36...
+
+	Threads 1 (fixed)
+	Heuristics 0
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.96s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.41s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.07s
+
+Summary candidate parameter set 36 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.96s    4.41s    4.07s    4.15s     0.19    4.41s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 515s (385s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 37...
+
+	Threads 1 (fixed)
+	PrePasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.92s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.59s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.56s
+
+Summary candidate parameter set 37 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.92s    4.59s    4.56s    4.69s     0.16    4.92s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 529s (371s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 38...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 3
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.08s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.51s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.54s
+
+Summary candidate parameter set 38 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.08s    3.51s    3.54s    3.71s     0.26    4.08s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 540s (360s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 39...
+
+	Threads 1 (fixed)
+	Heuristics 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.63s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.21s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 5.71s
+
+Summary candidate parameter set 39 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.63s    5.21s    5.71s    5.18s     0.44    5.71s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 556s (344s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 40...
+
+	Threads 1 (fixed)
+	OBBT 2
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.81s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.45s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.99s
+
+Summary candidate parameter set 40 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.81s    3.45s    3.99s    3.75s     0.23    3.99s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 567s (333s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 41...
+
+	Threads 1 (fixed)
+	BranchDir -1
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.61s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.30s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.09s
+
+Summary candidate parameter set 41 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.61s    4.30s    3.09s    3.67s     0.50    4.30s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 578s (322s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 42...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	Aggregate 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.40s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.38s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 5.90s
+
+Summary candidate parameter set 42 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.40s    4.38s    5.90s    4.90s     0.71    5.90s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 593s (307s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 43...
+
+	Threads 1 (fixed)
+	Presolve 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 9.00s (limit)
+
+Summary candidate parameter set 43 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL    9.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 602s (298s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 44...
+
+	Threads 1 (fixed)
+	Method 2
+	VarBranch 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.01s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.86s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 5.38s
+
+Summary candidate parameter set 44 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.01s    3.86s    5.38s    4.41s     0.69    5.38s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 615s (285s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 45...
+
+	Threads 1 (fixed)
+	Cuts 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 7.69s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 6.55s
+
+Summary candidate parameter set 45 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     7.69s    6.55s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.61s (parameter set 22, 1 non-defaults)
+Total elapsed tuning time 629s (271s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 46...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.13s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.08s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.26s
+
+Summary candidate parameter set 46 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.13s    4.08s    3.26s    3.49s     0.42    4.08s
+
+Improvement found:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  improved: mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 640s (260s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 47...
+
+	Threads 1 (fixed)
+	OBBT 0
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.28s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.12s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.13s
+
+Summary candidate parameter set 47 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.28s    4.12s    3.13s    3.51s     0.44    4.12s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 650s (250s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 48...
+
+	Threads 1 (fixed)
+	GomoryPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.89s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.66s
+
+Summary candidate parameter set 48 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.89s    5.66s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 661s (239s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 49...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	Presolve 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 2.83s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.03s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.40s
+
+Summary candidate parameter set 49 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     2.83s    5.03s    3.40s    3.75s     0.93    5.03s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 672s (228s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 50...
+
+	Threads 1 (fixed)
+	ScaleFlag 0
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.83s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.49s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.78s
+
+Summary candidate parameter set 50 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.83s    5.49s    4.78s    5.04s     0.32    5.49s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 687s (213s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 51...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	Cuts 2
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.10s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.45s
+
+Summary candidate parameter set 51 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.10s    5.45s        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 698s (202s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 52...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	PreSparsify 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.14s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.39s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.45s
+
+Summary candidate parameter set 52 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.14s    4.39s    3.45s    3.66s     0.53    4.39s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 709s (191s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 53...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	StrongCGCuts 2
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.16s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.61s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.72s
+
+Summary candidate parameter set 53 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.16s    3.61s    3.72s    3.50s     0.24    3.72s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 719s (181s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 54...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	GomoryPasses 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.91s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.11s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.64s
+
+Summary candidate parameter set 54 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.91s    4.11s    3.64s    3.89s     0.19    4.11s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 731s (169s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 55...
+
+	Threads 1 (fixed)
+	OBBT 0
+	VarBranch 1
+	Cuts 2
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 5.10s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.30s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 5.05s
+
+Summary candidate parameter set 55 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.10s    5.30s    5.05s    5.15s     0.11    5.30s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 746s (154s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 56...
+
+	Threads 1 (fixed)
+	SimplexPricing 0
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.53s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.49s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.65s
+
+Summary candidate parameter set 56 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.53s    4.49s    4.65s    4.56s     0.07    4.65s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 760s (140s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 57...
+
+	Threads 1 (fixed)
+	Disconnected 0
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.18s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.14s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.17s
+
+Summary candidate parameter set 57 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.18s    4.14s    3.17s    3.50s     0.46    4.14s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 770s (130s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 58...
+
+	Threads 1 (fixed)
+	SimplexPricing 2
+	OBBT 0
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.55s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 3.50s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 2.94s
+
+Summary candidate parameter set 58 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.55s    3.50s    2.94s    3.66s     0.67    4.55s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 781s (119s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 59...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	PrePasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.19s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.17s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.19s
+
+Summary candidate parameter set 59 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.19s    4.17s    3.19s    3.51s     0.46    4.17s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 792s (108s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 60...
+
+	Threads 1 (fixed)
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.39s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.44s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.94s
+
+Summary candidate parameter set 60 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.39s    5.44s    4.94s    4.93s     0.43    5.44s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 807s (93s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 61...
+
+	Threads 1 (fixed)
+	Symmetry 2
+	VarBranch 1
+	CutPasses 5
+	Presolve 1
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 2.81s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.12s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.60s
+
+Summary candidate parameter set 61 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     2.81s    5.12s    3.60s    3.84s     0.96    5.12s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 818s (82s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 62...
+
+	Threads 1 (fixed)
+	DegenMoves 0
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.92s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.34s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.75s
+
+Summary candidate parameter set 62 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.92s    4.34s    4.75s    4.67s     0.24    4.92s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 832s (68s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 63...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	AggFill 10
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 10.00s (limit)
+
+Summary candidate parameter set 63 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL   10.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 842s (58s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 64...
+
+	Threads 1 (fixed)
+	SimplexPricing 3
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 4.44s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 5.55s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 4.51s
+
+Summary candidate parameter set 64 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     4.44s    5.55s    4.51s    4.83s     0.51    5.55s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 857s (43s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 65...
+
+	Threads 1 (fixed)
+	MIPFocus 1
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 10.00s (limit)
+
+Summary candidate parameter set 65 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL   10.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 867s (33s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 66...
+
+	Threads 1 (fixed)
+	Symmetry 2
+	VarBranch 1
+	CutPasses 5
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.16s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.08s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #3 ... runtime 3.20s
+
+Summary candidate parameter set 66 
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.16s    4.08s    3.20s    3.48s     0.42    4.08s
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 877s (23s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 67...
+
+	Threads 1 (fixed)
+	CutPasses 5
+	Presolve 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 10.00s (limit)
+
+Summary candidate parameter set 67 (discarded)
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL   10.00s*        -        -        -        -        -
+
+Progress so far:
+  baseline: mean runtime 4.82s (parameter set 1, 0 non-defaults)
+  best:     mean runtime 3.49s (parameter set 46, 2 non-defaults)
+Total elapsed tuning time 887s (13s remaining, 1 running jobs)
+
+-------------------------------------------------------------------------------
+
+Testing candidate parameter set 68...
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+	LiftProjectCuts 0
+
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #1 ... runtime 3.17s
+Solving conVRP_SLA_muestras_B_dispersa (Min) with random seed #2 ... runtime 4.29s
+
+
+Tune time limit reached
+
+-------------------------------------------------------------------------------
+
+Tested 67 parameter sets in 894.62s
+Total optimization run time for up to 1 concurrent runs: 894.23s
+
+Baseline parameter set: mean runtime 4.82s
+
+	Threads 1 (fixed)
+
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     5.31s    4.67s    4.46s    4.82s     0.36    5.31s
+
+Improved parameter set 1 (mean runtime 3.48s):
+
+	Threads 1 (fixed)
+	Symmetry 2
+	VarBranch 1
+	CutPasses 5
+
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.16s    4.08s    3.20s    3.48s     0.42    4.08s
+
+Improved parameter set 2 (mean runtime 3.49s):
+
+	Threads 1 (fixed)
+	VarBranch 1
+	CutPasses 5
+
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.13s    4.08s    3.26s    3.49s     0.42    4.08s
+
+Improved parameter set 3 (mean runtime 3.61s):
+
+	Threads 1 (fixed)
+	VarBranch 1
+
+ # Name              0        1        2      Avg  Std Dev      Max
+ 0 conVRP_SL     3.75s    3.45s    3.63s    3.61s     0.12    3.75s
+
