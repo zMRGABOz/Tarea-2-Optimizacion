@@ -9,27 +9,82 @@ Tareas a evaluar segun la pauta:
 5. Interpretar los resultados de sensibilidad.
 """
 
-from __future__ import annotations
 from typing import Any, Dict, List
-try:
-    import gurobipy as gp
-    from gurobipy import GRB
-except ImportError:
-    gp = None
-    GRB = None
+import gurobipy as gp
+from gurobipy import GRB
 
+
+from src.data_loader import load_instance
 from src.model import build_convrp_model
 
 
 def run_capacity_sensitivity_analysis(data: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Ejecuta el analisis de sensibilidad fijando variables binarias con model.fixed().
+    """Analiza la capacidad en el LP con decisiones enteras fixed"""
 
-    Args:
-        data: Datos de la instancia procesada.
+    # Armar modelo
+    model, refs = build_convrp_model(data)
+    fixed_model = None
 
-    Returns:
-        Lista de diccionarios con el reporte de precios sombra y rangos de validez de Q.
-    """
-    raise NotImplementedError(
-        "run_capacity_sensitivity_analysis pendiente de implementacion."
-    )
+    try:
+        # Buscar solucion
+        model.optimize()
+
+        if model.SolCount == 0:
+            raise RuntimeError(
+                f"No se encontro una solucion entera. Codigo: {model.Status}"
+            )
+
+        if model.Status == GRB.OPTIMAL:
+            print("Solucion optima encontrada")
+        else:
+            print("Optimo no encontrado, se revisara mejor. Codigo: {model.Status}")
+
+        print(f"Distancia de referencia: {model.ObjVal:.4f}")
+        print(f"Gap de referencia: {model.MIPGap * 100:.4f}%")
+
+        # Crear modelo fijado (X, Z)
+        fixed_model = model.fixed()
+
+        # Simplex Dual
+        fixed_model.Params.Method = 1
+        fixed_model.Params.Threads = 1
+        fixed_model.Params.TimeLimit = 600
+        fixed_model.optimize()
+
+        if fixed_model.Status != GRB.OPTIMAL:
+            raise RuntimeError(
+                f"El modelo fijado no termino optimo. Codigo: {fixed_model.Status}"
+            )
+
+        print(f"Distancia de modelo fijado: {fixed_model.ObjVal:.4f}")
+
+        # Restricciones de capacidad
+        results = []
+
+        for (route, day), original_constr in refs["capacity_constrs"].items():
+            constraint_name = original_constr.ConstrName
+            capacity = fixed_model.getConstrByName(constraint_name)
+
+            if capacity is None:
+                raise RuntimeError(
+                    f"No se encontro la restriccion {constraint_name}"
+                )
+
+            # Guardamos la fila
+            results.append({
+                "route": route,
+                "day": day,
+                "current_capacity_Q": capacity.RHS,
+                "slack": capacity.Slack,
+                "shadow_price_Pi": capacity.Pi,
+                "sarhs_low": capacity.SARHSLow,
+                "sarhs_up": capacity.SARHSUp,
+            })
+        return results
+
+    finally:
+        # Limpieza de objetos
+        if fixed_model is not None:
+            fixed_model.dispose()
+
+        model.dispose()
