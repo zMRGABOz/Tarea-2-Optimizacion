@@ -20,7 +20,8 @@ from src.experiments import (
     compute_continuous_relaxation,
     run_solver_benchmarks,
     run_parameter_tuning,
-    run_all_experiments
+    run_all_experiments,
+    write_csv
 )
 from src.sensitivity import run_capacity_sensitivity_analysis
 
@@ -127,6 +128,10 @@ def main():
         elif args.mode == "sensitivity":
             print("\nEjecutando analisis de sensibilidad para la capacidad Q (model.fixed())...")
             sens_res = run_capacity_sensitivity_analysis(data)
+            out_dir = Path(args.out_dir or f"results/{data['name']}")
+            out_path = out_dir / "sensitivity.csv"
+            write_csv(sens_res, out_path)
+            print(f"Resultados de sensibilidad guardado en {out_path}")
             print("\nSensibilidad de Capacidad Q:")
             print(f"{'Ruta':<6} | {'Dia':<5} | {'Capacidad Q':<12} | {'Slack':<8} | {'Precio Sombra':<14} | {'SARHSLow':<10} | {'SARHSUp':<10}")
             print("-" * 75)
