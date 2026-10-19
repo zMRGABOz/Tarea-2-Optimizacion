@@ -37,7 +37,7 @@ def run_capacity_sensitivity_analysis(data: Dict[str, Any]) -> List[Dict[str, An
         if model.Status == GRB.OPTIMAL:
             print("Solucion optima encontrada")
         else:
-            print("Optimo no encontrado, se revisara mejor. Codigo: {model.Status}")
+            print(f"Optimo no encontrado, se revisara mejor. Codigo: {model.Status}")
 
         print(f"Distancia de referencia: {model.ObjVal:.4f}")
         print(f"Gap de referencia: {model.MIPGap * 100:.4f}%")
