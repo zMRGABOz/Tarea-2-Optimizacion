@@ -54,7 +54,6 @@ Se generaron dos instancias propias con la misma estructura (3 días, 3 rutas po
 | Cierre del laboratorio (bW) | 240 min | 290 min |
 | Big-M | 336 | 394 |
 | Utilización de capacidad (días 1/2/3) | 91% / 71% / 74% | 80% / 84% / 90% |
-| Arcos descartados por las ventanas | 26% | 38% |
 
 Los clientes sin ventana propia conservan el horario completo del laboratorio, `[0, bW]`, y por eso el modelo no les aplica la restricción (8).
 
@@ -66,9 +65,7 @@ Los clientes sin ventana propia conservan el horario completo del laboratorio, `
 4. La capacidad Q se fija a partir de la mayor carga de esa solución, con un margen del 5% (instancia A) y del 3% (instancia B).
 5. Las ventanas se derivan de los tiempos de llegada de la solución de referencia, con una holgura de 20 min (A) y 15 min (B), y se elige qué clientes tendrán ventana.
 
-Con este procedimiento ambas instancias son **factibles por construcción**. La solución de referencia no es el óptimo, así que el solver tiene un ruteo mejor que encontrar. Las instancias se pueden regenerar con `generar_instancias.py` (semillas 11 y 23).
-
-## Archivos
+Con este procedimiento ambas instancias son **factibles por construcción**. La solución de referencia no es el óptimo, así que el solver tiene un ruteo mejor que encontrar.
 
 - `instances/muestras_A_barrios.txt`
 - `instances/muestras_B_dispersa.txt`

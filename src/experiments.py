@@ -9,6 +9,7 @@ import gurobipy as gp
 from gurobipy import GRB
 
 from src.model import build_convrp_model
+from src.sensitivity import run_capacity_sensitivity_analysis
 
 # Configuraciones exigidas por el enunciado (cada una se compara contra el baseline)
 SOLVER_CONFIGURATIONS: List[tuple[str, Dict[str, Any]]] = [
@@ -192,7 +193,7 @@ def run_all_experiments(
     log_dir = out_dir / "logs"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print("[1/3] Configuraciones del solver (Threads=1, TimeLimit=600)", flush=True)
+    print("[1/4] Configuraciones del solver (Threads=1, TimeLimit=600)", flush=True)
     bench = run_solver_benchmarks(data, log_dir=str(log_dir))
     write_csv(bench, out_dir / "benchmark.csv")
 
@@ -200,11 +201,11 @@ def run_all_experiments(
     feasible = [r for r in bench if r["obj_val"] is not None]
     z_milp = min(r["obj_val"] for r in feasible) if feasible else None
 
-    print("[2/3] Relajacion continua", flush=True)
+    print("[2/4] Relajacion continua", flush=True)
     relax = compute_continuous_relaxation(data, z_milp=z_milp)
     print(f"     z_LP={relax['z_lp']:.2f}  z_MILP={z_milp}  brecha={relax['integrality_gap_percent']}", flush=True)
 
-    print(f"[3/3] model.tune() con TuneTimeLimit={tune_time_limit}s", flush=True)
+    print(f"[3/4] model.tune() con TuneTimeLimit={tune_time_limit}s", flush=True)
     tune = run_parameter_tuning(data, tune_time_limit=tune_time_limit,
                                 output_tune_file=str(out_dir / "best_tune.prm"),
                                 log_dir=str(log_dir))
@@ -216,6 +217,12 @@ def run_all_experiments(
             return (0, r["runtime_sec"])
         return (1, r["mip_gap_percent"] if r["mip_gap_percent"] is not None else float("inf"))
     best_manual = min(bench[1:], key=manual_key)
+    print(f"[4/4] Sensibilidad de capacidad con model.fixed()", flush=True)
+    sensitivity = run_capacity_sensitivity_analysis(data)
+    sensitivity_path = out_dir / "sensitivity.csv"
+    write_csv(sensitivity, sensitivity_path)
+    print(f"Resultados guardados en {sensitivity_path}", flush=True)
+
 
     summary = {
         "instance": data["name"],
@@ -223,6 +230,7 @@ def run_all_experiments(
         "baseline": bench[0],
         "best_manual": best_manual,
         "tuning": tune,
+        "sensitivity_file": str(sensitivity_path)
     }
     comparison = [bench[0], best_manual] + ([tune["rerun"]] if "rerun" in tune else [])
     write_csv(comparison, out_dir / "tune_comparison.csv")

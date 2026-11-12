@@ -27,7 +27,8 @@ from src.experiments import (
     compute_continuous_relaxation,
     run_solver_benchmarks,
     run_parameter_tuning,
-    run_all_experiments
+    run_all_experiments,
+    write_csv
 )
 from src.sensitivity import run_capacity_sensitivity_analysis
 
@@ -221,18 +222,14 @@ def main():
             for k, v in tune_res.items():
                 print(f"  {k}: {v}")
 
-        # Modo 6: Benchmark + relajacion + tuning con CSV/JSON
-        elif args.mode == "all":
-            summary = run_all_experiments(data, out_dir=out_dir, tune_time_limit=args.tune_time)
-            print(f"\nResultados guardados en {out_dir}/")
-            print(f"  Brecha de integralidad: {summary['relaxation']['integrality_gap_percent']:.2f}%")
-            print(f"  Mejor manual: {summary['best_manual']['configuration']}")
-            print(f"  Parametros tuner: {summary['tuning'].get('best_params')}")
-
         # Modo 5: Analisis de sensibilidad post-optimo
         elif args.mode == "sensitivity":
             print("\nEjecutando analisis de sensibilidad para la capacidad Q (model.fixed())...")
             sens_res = run_capacity_sensitivity_analysis(data)
+            out_dir = Path(args.out_dir or f"results/{data['name']}")
+            out_path = out_dir / "sensitivity.csv"
+            write_csv(sens_res, out_path)
+            print(f"Resultados de sensibilidad guardado en {out_path}")
             print("\nSensibilidad de Capacidad Q:")
             print(f"{'Ruta':<6} | {'Dia':<5} | {'Capacidad Q':<12} | {'Slack':<8} | {'Precio Sombra':<14} | {'SARHSLow':<10} | {'SARHSUp':<10}")
             print("-" * 75)
@@ -240,6 +237,15 @@ def main():
                 low_str = f"{row['sarhs_low']:.2f}" if row['sarhs_low'] is not None else "N/A"
                 up_str = f"{row['sarhs_up']:.2f}" if row['sarhs_up'] is not None else "N/A"
                 print(f"{row['route']:<6} | {row['day']:<5} | {row['current_capacity_Q']:<12.2f} | {row['slack']:<8.2f} | {row['shadow_price_Pi']:<14.4f} | {low_str:<10} | {up_str:<10}")
+
+        # Modo 6: Benchmark + relajacion + tuning + sens con CSV/JSON
+        elif args.mode == "all":
+            out_dir = args.out_dir or f"results/{data['name']}"
+            summary = run_all_experiments(data, out_dir=out_dir, tune_time_limit=args.tune_time)
+            print(f"\nResultados guardados en {out_dir}/")
+            print(f"  Brecha de integralidad: {summary['relaxation']['integrality_gap_percent']:.2f}%")
+            print(f"  Mejor manual: {summary['best_manual']['configuration']}")
+            print(f"  Parametros tuner: {summary['tuning'].get('best_params')}")
 
     except NotImplementedError as e:
         print(f"\n[Aviso]: {e}")
