@@ -1,2 +1,4 @@
 gurobipy>=10.0.0
+cplex>=22.1.0.0
+docplex>=2.25.0
 pandas>=1.5.0

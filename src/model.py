@@ -12,6 +12,7 @@ Formulacion algebraica reducida en gurobipy basada en Campelo et al. (2019):
 """
 
 from __future__ import annotations
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 try:
     import gurobipy as gp
@@ -19,6 +20,15 @@ try:
 except ImportError:
     gp = None
     GRB = None
+
+
+def export_lp(model: gp.Model, filepath: str | Path) -> str:
+    """Exporta la formulacion de Gurobi a formato LP."""
+    path = Path(filepath)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    model.update()
+    model.write(str(path))
+    return str(path.resolve())
 
 
 def configure_solver_parameters(
@@ -209,6 +219,7 @@ def build_convrp_model(
 
     # --- 5. Parametros del solver y retorno ---
     configure_solver_parameters(model, params)
+    model.update()
 
     refs: Dict[str, Any] = {
         "X": X,
