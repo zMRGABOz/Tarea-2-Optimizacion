@@ -1,6 +1,6 @@
-# Tarea 2 - Optimizacion: conVRP-SLA
+# Tarea 3 - Optimizacion: conVRP-SLA (Gurobi vs. CPLEX)
 
-Implementacion y evaluacion computacional en Gurobi de una version reducida del problema de ruteo vehicular consistente con acuerdos de nivel de servicio (conVRP-SLA), basado en Campelo et al. (2019).
+Implementacion, validacion cruzada y evaluacion computacional comparativa entre **Gurobi** y **IBM ILOG CPLEX** para el problema de ruteo vehicular consistente con acuerdos de nivel de servicio (conVRP-SLA), basado en Campelo et al. (2019).
 
 ## Origen de Datos y Formato de Instancias
 
@@ -14,30 +14,34 @@ Dado que las instancias originales de Solomon consideran un unico dia, se extien
 - El registro `0` define las coordenadas y la ventana de operacion del deposito (`READY_TIME` = $aW$, `DUE_DATE` = $bW$).
 - Los registros `1` a `N` definen clientes con sus ventanas de entrega (`READY_TIME` = $a_i$, `DUE_DATE` = $b_i$) y tiempo de atencion (`SERVICE_TIME` = $st_i$).
 
-El archivo [instances/sample_toy.txt](instances/sample_toy.txt) sirve como plantilla de referencia para la construccion de las instancias definitivas.
+El archivo [instances/sample_toy.txt](instances/sample_toy.txt) sirve como plantilla de referencia para la construccion y prueba de instancias.
 
 ## Estructura del Repositorio
 
 ```text
 Tarea 2 Optimización/
-├── .gitignore         # Archivos y patrones excluidos de git
-├── README.md          # Guia tecnica y comandos de ejecucion
-├── requirements.txt   # Dependencias de Python
-├── main.py            # Punto de entrada unificado por CLI
-├── instances/         # Instancias de evaluacion (.txt)
-│   └── sample_toy.txt # Plantilla y muestra minima de verificacion
-├── src/               # Modulos del sistema
+├── .gitignore          # Archivos y patrones excluidos de git
+├── README.md           # Guia tecnica y comandos de ejecucion
+├── requirements.txt    # Dependencias de Python (gurobipy, cplex, docplex, pandas)
+├── main.py             # Punto de entrada unificado por CLI (--solver / --mode)
+├── instances/          # Instancias de evaluacion (.txt)
+│   ├── sample_toy.txt  # Muestra minima de verificacion
+│   ├── muestras_A_barrios.txt
+│   └── muestras_B_dispersa.txt
+├── src/                # Modulos del sistema
 │   ├── __init__.py
-│   ├── data_loader.py # Lector de instancias tipo Solomon extendido
-│   ├── model.py       # Formulacion algebraica reducida en gurobipy
-│   ├── experiments.py # Relajacion continua, benchmarks de solver y tuning
-│   └── sensitivity.py # Analisis de sensibilidad con model.fixed()
-└── results/           # Archivos de salida (.prm, tablas y logs)
+│   ├── data_loader.py  # Lector de instancias tipo Solomon extendido
+│   ├── model.py        # Formulacion reducida en Gurobi (gurobipy)
+│   ├── cplex_model.py  # Formulacion equivalente en CPLEX (docplex.mp)
+│   ├── solver_adapter.py # Capa adaptadora unificada y normalizacion de metricas
+│   ├── experiments.py  # Bateria de benchmarks y tuning
+│   └── sensitivity.py  # Analisis de sensibilidad post-optimo
+└── results/            # Archivos de salida (.prm, exportaciones .lp y logs)
 ```
 
 ## Requisitos e Instalacion
 
-Requisitos: Python 3.10+ y licencia activa de Gurobi.
+Requisitos: Python 3.10+ con licencia activa de Gurobi e instalacion de IBM ILOG CPLEX Optimization Studio.
 
 1. Crear y activar entorno virtual:
    ```bash
@@ -52,22 +56,46 @@ Requisitos: Python 3.10+ y licencia activa de Gurobi.
 
 ## Modos de Ejecucion (CLI)
 
-El archivo `main.py` permite ejecutar las distintas fases de analisis mediante el argumento `--mode`:
+El punto de entrada principal es `main.py`, que permite seleccionar el solver mediante `--solver {gurobi, cplex, compare}` y el modo de operacion mediante `--mode`:
 
-### 1. Resolucion Estandar (MILP Base)
-Resuelve la instancia con el modelo entero bajo parametros predeterminados:
+### 1. Validacion Cruzada Directa (Gurobi vs. CPLEX)
+Ejecuta secuencialmente la Relajacion Continua y el Modelo Entero en ambos motores sobre la misma instancia, imprime la tabla comparativa con las metricas de la rubrica y genera los archivos `.log`:
 ```bash
-python3 main.py --instance instances/sample_toy.txt --mode solve
+python3 main.py --instance instances/sample_toy.txt --solver compare
 ```
 
-### 2. Relajacion Continua y Brecha de Integralidad
-Resuelve la relajacion continua ($z_{LP}$), obtiene el valor entero ($z_{MILP}$) y calcula la brecha:
-$$\text{Brecha} = \frac{z_{MILP} - z_{LP}}{z_{MILP}} \times 100\%$$
+Metricas reportadas:
+- **Relajacion continua**: $z_{LP}$, tiempo de computo (s), iteraciones simplex y estatus.
+- **Modelo entero**: $z_{MILP}$, cota inferior (*best bound*), MIPGap final (%), tiempo (s), nodos explorados y estatus.
+- **Brecha de integralidad**: $\frac{z_{MILP} - z_{LP}}{z_{MILP}} \times 100\%$.
+
+### 2. Resolucion Estandar (MILP Base)
+Resuelve el modelo entero bajo configuracion por defecto en el solver seleccionado (`gurobi` o `cplex`):
 ```bash
-python3 main.py --instance instances/sample_toy.txt --mode relax
+# En Gurobi
+python3 main.py --instance instances/sample_toy.txt --solver gurobi --mode solve
+
+# En CPLEX
+python3 main.py --instance instances/sample_toy.txt --solver cplex --mode solve
 ```
 
-### 3. Comparacion de Configuraciones del Solver
+### 3. Relajacion Continua y Brecha de Integralidad
+Resuelve la relajacion continua ($z_{LP}$) fijando variables binarias a continuas $[0, 1]$, calcula el valor entero ($z_{MILP}$) y reporta la brecha de integralidad:
+```bash
+# En Gurobi
+python3 main.py --instance instances/sample_toy.txt --solver gurobi --mode relax
+
+# En CPLEX
+python3 main.py --instance instances/sample_toy.txt --solver cplex --mode relax
+```
+
+### 4. Exportacion a Formato LP
+Permite volcar el modelo canónico generado a un archivo `.lp` para auditar variables y restricciones:
+```bash
+python3 main.py --instance instances/sample_toy.txt --solver cplex --export-lp results/modelo_cplex.lp
+```
+
+### 5. Comparacion de Configuraciones del Solver (Gurobi)
 Ejecuta la bateria de pruebas con 1 hilo (`Threads=1`) y 600 segundos (`TimeLimit=600`):
 - Baseline (por defecto)
 - Cuts=0
@@ -80,14 +108,14 @@ Ejecuta la bateria de pruebas con 1 hilo (`Threads=1`) y 600 segundos (`TimeLimi
 python3 main.py --instance instances/sample_toy.txt --mode benchmark
 ```
 
-### 4. Ajuste Automatico de Parametros (Tuning)
-Ejecuta `model.tune()` con un tiempo limite configurable y exporta el mejor perfil a `results/best_tune.prm`:
+### 6. Ajuste Automatico de Parametros (Tuning)
+Ejecuta `model.tune()` en Gurobi con tiempo limite configurable:
 ```bash
 python3 main.py --instance instances/sample_toy.txt --mode tune --tune-time 120
 ```
 
-### 5. Analisis de Sensibilidad Post-Optimo
-Fija las variables enteras a su valor optimo (`model.fixed()`) y analiza el precio sombra (`Pi`) y los rangos de validez del lado derecho (`SARHSLow` / `SARHSUp`) para la restriccion de capacidad $Q$:
+### 7. Analisis de Sensibilidad Post-Optimo
+Fija las variables enteras a su valor optimo (`model.fixed()`) y analiza el precio sombra (`Pi`) y rangos de validez (`SARHSLow` / `SARHSUp`) para la capacidad $Q$:
 ```bash
 python3 main.py --instance instances/sample_toy.txt --mode sensitivity
 ```
