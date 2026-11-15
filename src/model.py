@@ -37,13 +37,10 @@ def configure_solver_parameters(
 ) -> None:
     """Configura parametros de ejecucion del solver Gurobi.
 
-    Parametros base exigidos por el enunciado:
-    - Threads: 1
-    - TimeLimit: 600 segundos
+    Por defecto no se modifica ningun parametro (configuracion por defecto del
+    solver, como exige la comparacion Gurobi vs CPLEX). Los experimentos de TC2
+    pasan Threads=1 y TimeLimit=600 de forma explicita en `params`.
     """
-    model.setParam("Threads", 1)
-    model.setParam("TimeLimit", 600)
-
     if params:
         for key, value in params.items():
             model.setParam(key, value)
@@ -107,8 +104,8 @@ def build_convrp_model(
     # Z[i, r]: 1 si el cliente i es asignado a la ruta r (consistente en todo D)
     Z = model.addVars(NC, routes, lb=0.0, ub=1.0, vtype=vtype_bin, name="Z")
 
-    # W[i, t]: momento de atencion del cliente i en dia t (W_it >= 0)
-    W = model.addVars(NC, days, lb=0.0, vtype=GRB.CONTINUOUS, name="W")
+    # W[i, t]: momento de atencion del cliente i en dia t (W_it >= 0), solo si (i, t) in O
+    W = model.addVars(sorted(O), lb=0.0, vtype=GRB.CONTINUOUS, name="W")
 
     # dW[r]: horario de salida de la ruta r desde el deposito (dW^r >= 0)
     dW = model.addVars(routes, lb=0.0, vtype=GRB.CONTINUOUS, name="dW")
@@ -139,25 +136,22 @@ def build_convrp_model(
             name=f"assign_{i}"
         )
 
-    # (3) Conservacion de flujo de entrada a clientes
-    for j in NC:
+    # (3) Conservacion de flujo de entrada: solo para clientes con pedido ese dia.
+    # Un cliente sin pedido el dia t no tiene arcos en A, por lo que no se visita.
+    for (j, t) in sorted(O):
         for r in routes:
-            for t in days:
-                rhs = Z[j, r] if (j, t) in O else 0
-                model.addConstr(
-                    gp.quicksum(X[i, j, t, r] for i in in_neighbors[(j, t)]) == rhs,
-                    name=f"flow_in_{j}_{r}_{t}"
-                )
+            model.addConstr(
+                gp.quicksum(X[i, j, t, r] for i in in_neighbors[(j, t)]) == Z[j, r],
+                name=f"flow_in_{j}_{r}_{t}"
+            )
 
-    # (4) Conservacion de flujo de salida de clientes
-    for i in NC:
+    # (4) Conservacion de flujo de salida: solo para clientes con pedido ese dia
+    for (i, t) in sorted(O):
         for r in routes:
-            for t in days:
-                rhs = Z[i, r] if (i, t) in O else 0
-                model.addConstr(
-                    gp.quicksum(X[i, j, t, r] for j in out_neighbors[(i, t)]) == rhs,
-                    name=f"flow_out_{i}_{r}_{t}"
-                )
+            model.addConstr(
+                gp.quicksum(X[i, j, t, r] for j in out_neighbors[(i, t)]) == Z[i, r],
+                name=f"flow_out_{i}_{r}_{t}"
+            )
 
     # (5) Salida diaria obligatoria del deposito por ruta (bypass 0 -> n+1 si inactiva)
     for t in days:

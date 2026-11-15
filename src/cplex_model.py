@@ -37,13 +37,9 @@ def configure_solver_parameters(
 ) -> None:
     """Configura parametros de ejecucion del solver CPLEX.
 
-    Parametros base exigidos por el enunciado:
-    - Threads: 1
-    - TimeLimit: 600 segundos
+    Por defecto no se modifica ningun parametro (configuracion por defecto del
+    solver, como exige la comparacion Gurobi vs CPLEX).
     """
-    model.parameters.threads = 1
-    model.parameters.timelimit = 600
-
     if params:
         for key, value in params.items():
             if hasattr(model.parameters, key):
@@ -100,7 +96,7 @@ def build_convrp_cplex_model(
     # --- 2. Variables de decision ---
     arc_indices = [(i, j, t, r) for (i, j, t) in A for r in routes]
     z_indices = [(i, r) for i in NC for r in routes]
-    w_indices = [(i, t) for i in NC for t in days]
+    w_indices = sorted(O)  # W solo para clientes con pedido ese dia
     rw_indices = [(r, t) for r in routes for t in days]
 
     if continuous_relaxation:
@@ -136,25 +132,22 @@ def build_convrp_cplex_model(
             ctname=f"assign_{i}"
         )
 
-    # (3) Conservacion de flujo de entrada a clientes
-    for j in NC:
+    # (3) Conservacion de flujo de entrada: solo para clientes con pedido ese dia.
+    # Un cliente sin pedido el dia t no tiene arcos en A, por lo que no se visita.
+    for (j, t) in sorted(O):
         for r in routes:
-            for t in days:
-                rhs = Z[j, r] if (j, t) in O else 0
-                model.add_constraint(
-                    model.sum(X[i, j, t, r] for i in in_neighbors[(j, t)]) == rhs,
-                    ctname=f"flow_in_{j}_{r}_{t}"
-                )
+            model.add_constraint(
+                model.sum(X[i, j, t, r] for i in in_neighbors[(j, t)]) == Z[j, r],
+                ctname=f"flow_in_{j}_{r}_{t}"
+            )
 
-    # (4) Conservacion de flujo de salida de clientes
-    for i in NC:
+    # (4) Conservacion de flujo de salida: solo para clientes con pedido ese dia
+    for (i, t) in sorted(O):
         for r in routes:
-            for t in days:
-                rhs = Z[i, r] if (i, t) in O else 0
-                model.add_constraint(
-                    model.sum(X[i, j, t, r] for j in out_neighbors[(i, t)]) == rhs,
-                    ctname=f"flow_out_{i}_{r}_{t}"
-                )
+            model.add_constraint(
+                model.sum(X[i, j, t, r] for j in out_neighbors[(i, t)]) == Z[i, r],
+                ctname=f"flow_out_{i}_{r}_{t}"
+            )
 
     # (5) Salida diaria obligatoria del deposito por ruta
     for t in days:

@@ -128,15 +128,18 @@ def load_instance(filepath: str | Path) -> Dict[str, Any]:
 
     # -------------------------------------------------------------------------
     # Paso 4: Construir arcos validos (A) para cada dia
+    # Solo se crean arcos hacia/desde clientes con pedido ese dia: un cliente
+    # sin demanda el dia d no tiene arcos, flujo ni horario ese dia.
     # -------------------------------------------------------------------------
     A: List[Tuple[int, int, int]] = []
     for d in days:
+        active = [c for c in NC if q[(c, d)] > 0]
         A.append((depot_start, depot_end, d))  # Bypass para rutas inactivas
-        for j in NC:
+        for j in active:
             A.append((depot_start, j, d))      # Salida de deposito a cliente
             A.append((j, depot_end, d))        # Retorno de cliente a deposito
-        for i in NC:
-            for j in NC:
+        for i in active:
+            for j in active:
                 if i != j:
                     A.append((i, j, d))        # Traslado entre clientes distintos
 

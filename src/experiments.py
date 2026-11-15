@@ -11,6 +11,9 @@ from gurobipy import GRB
 from src.model import build_convrp_model
 from src.sensitivity import run_capacity_sensitivity_analysis
 
+# Condiciones exigidas por el enunciado de TC2 para todas sus corridas
+TC2_BASE_PARAMS: Dict[str, Any] = {"Threads": 1, "TimeLimit": 600}
+
 # Configuraciones exigidas por el enunciado (cada una se compara contra el baseline)
 SOLVER_CONFIGURATIONS: List[tuple[str, Dict[str, Any]]] = [
     ("Baseline", {}),
@@ -63,7 +66,7 @@ def solve_milp(
 ) -> Dict[str, Any]:
     """Resuelve el MILP con los parametros dados (sobre Threads=1, TimeLimit=600)."""
     params = dict(params or {})
-    run_params = dict(params)
+    run_params = {**TC2_BASE_PARAMS, **params}
     log_file = _log_path(log_dir, label.replace("=", "_"))
     if log_file:
         run_params["LogFile"] = log_file
@@ -79,7 +82,7 @@ def compute_continuous_relaxation(
 ) -> Dict[str, Any]:
     #Resuelve la relajacion continua y calcula la brecha de integralidad.
     # X y Z pasan a ser continuas en [0, 1]; el resto del modelo no cambia
-    model, _ = build_convrp_model(data, continuous_relaxation=True)
+    model, _ = build_convrp_model(data, params=TC2_BASE_PARAMS, continuous_relaxation=True)
     model.optimize()
     if model.Status != GRB.OPTIMAL:
         raise RuntimeError(f"La relajacion continua termino con estatus {_status_name(model.Status)}")
@@ -135,7 +138,7 @@ def run_parameter_tuning(
     log_dir: Optional[str] = None,
 ) -> Dict[str, Any]:
     #Ejecuta la herramienta model.tune() de Gurobi sobre la instancia.
-    tune_params: Dict[str, Any] = {"TuneTimeLimit": tune_time_limit}
+    tune_params: Dict[str, Any] = {**TC2_BASE_PARAMS, "TuneTimeLimit": tune_time_limit}
     tune_log = _log_path(log_dir, "tune")
     if tune_log:
         tune_params["LogFile"] = tune_log
