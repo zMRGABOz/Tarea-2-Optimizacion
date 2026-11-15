@@ -1,0 +1,94 @@
+{
+  "instancia": "muestras_B_dispersa",
+  "clientes": 18,
+  "dias": 3,
+  "rutas": 3,
+  "pedidos": 39,
+  "versiones": {
+    "gurobi": "13.0.3",
+    "cplex": "22.2.0.0"
+  },
+  "configuracion": "por defecto en ambos solvers (sin Threads ni TimeLimit)",
+  "tamano_modelo": {
+    "gurobi": {
+      "solver": "gurobi",
+      "num_variables": 1752,
+      "num_binary_vars": 1701,
+      "num_continuous_vars": 51,
+      "num_constraints": 1952
+    },
+    "cplex": {
+      "solver": "cplex",
+      "num_variables": 1752,
+      "num_binary_vars": 1701,
+      "num_continuous_vars": 51,
+      "num_constraints": 1952
+    }
+  },
+  "relajacion": {
+    "gurobi": {
+      "solver": "gurobi",
+      "status": "OPTIMAL",
+      "obj_val": 648.6799999999998,
+      "best_bound": 648.6799999999998,
+      "mip_gap_percent": 0.0,
+      "runtime_sec": 0.013000011444091797,
+      "node_count": 0,
+      "iterations": 334,
+      "sol_count": 1,
+      "is_optimal": true,
+      "continuous_relaxation": true,
+      "extra_info": {}
+    },
+    "cplex": {
+      "solver": "cplex",
+      "status": "OPTIMAL",
+      "obj_val": 648.6800000000001,
+      "best_bound": 648.6800000000001,
+      "mip_gap_percent": 0.0,
+      "runtime_sec": 0.0,
+      "node_count": 0,
+      "iterations": 70,
+      "sol_count": 1,
+      "is_optimal": true,
+      "continuous_relaxation": true,
+      "extra_info": {
+        "raw_status": "optimal",
+        "status_code": 1
+      }
+    }
+  },
+  "entero": {
+    "gurobi": {
+      "solver": "gurobi",
+      "status": "OPTIMAL",
+      "obj_val": 1126.92,
+      "best_bound": 1126.92,
+      "mip_gap_percent": 0.0,
+      "runtime_sec": 96.38000011444092,
+      "node_count": 188366,
+      "iterations": 3618219,
+      "sol_count": 10,
+      "is_optimal": true,
+      "continuous_relaxation": false,
+      "extra_info": {}
+    },
+    "cplex": {
+      "solver": "cplex",
+      "status": "OPTIMAL",
+      "obj_val": 1126.9200000000003,
+      "best_bound": 1126.8074178847803,
+      "mip_gap_percent": 0.009990249105525083,
+      "runtime_sec": 2251.156,
+      "node_count": 3045172,
+      "iterations": 65129582,
+      "sol_count": 1,
+      "is_optimal": true,
+      "continuous_relaxation": false,
+      "extra_info": {
+        "raw_status": "integer optimal, tolerance",
+        "status_code": 102
+      }
+    }
+  }
+}

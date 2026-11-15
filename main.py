@@ -11,6 +11,7 @@ Permite ejecutar los diferentes modos de operacion y solvers:
 
 from __future__ import annotations
 import argparse
+import json
 from pathlib import Path
 import sys
 from typing import Any, Dict
@@ -21,6 +22,7 @@ from src.solver_adapter import (
     SolverResult,
     compare_solvers,
     export_lp,
+    get_model_stats,
     solve_model
 )
 from src.experiments import (
@@ -82,6 +84,50 @@ def _print_comparison_table(
     print(f"{'Gurobi':<26} | {gap_int_grb:.2f}%")
     print(f"{'CPLEX':<26} | {gap_int_cpx:.2f}%")
     print("=" * 78 + "\n")
+
+
+def _save_comparison(
+    data: Dict[str, Any],
+    res_relax: Dict[str, SolverResult],
+    res_milp: Dict[str, SolverResult],
+    out_dir: Path
+) -> None:
+    """Guarda la comparacion Gurobi vs CPLEX en CSV (una fila por fase y solver) y JSON."""
+    import gurobipy
+    import cplex
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for phase, res in (("relajacion", res_relax), ("entero", res_milp)):
+        for solver in ("gurobi", "cplex"):
+            r = res[solver]
+            rows.append({
+                "fase": phase,
+                "solver": solver,
+                "estado": r.status,
+                "objetivo": r.obj_val,
+                "cota": r.best_bound,
+                "gap_percent": r.mip_gap_percent,
+                "tiempo_sec": r.runtime_sec,
+                "nodos": r.node_count,
+                "iteraciones": r.iterations,
+            })
+    write_csv(rows, out_dir / "comparacion.csv")
+
+    summary = {
+        "instancia": data["name"],
+        "clientes": len(data["NC"]),
+        "dias": len(data["days"]),
+        "rutas": len(data["routes"]),
+        "pedidos": len(data["O"]),
+        "versiones": {"gurobi": ".".join(map(str, gurobipy.gurobi.version())), "cplex": cplex.__version__},
+        "configuracion": "por defecto en ambos solvers (sin Threads ni TimeLimit)",
+        "tamano_modelo": {s: get_model_stats(s, data).to_dict() for s in ("gurobi", "cplex")},
+        "relajacion": {s: r.to_dict() for s, r in res_relax.items()},
+        "entero": {s: r.to_dict() for s, r in res_milp.items()},
+    }
+    with open(out_dir / "comparacion.json", "w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2, ensure_ascii=False)
 
 
 def main():
@@ -156,13 +202,17 @@ def main():
             exported = export_lp(s_exp, data, args.export_lp)
             print(f"Modelo exportado en formato LP ({s_exp}): {exported}")
 
-        # Modo Validacion Cruzada Directa (modo compare)
+        # Modo Validacion Cruzada Directa (modo compare), configuracion por defecto de ambos solvers
         if args.solver == "compare":
+            cmp_dir = Path(args.out_dir or f"results/tc3/{data['name']}")
+            cmp_logs = cmp_dir / "logs"
             print("\nEjecutando validacion cruzada completa (Relajacion + Modelo Entero)...")
-            res_relax = compare_solvers(data, continuous_relaxation=True, log_dir=log_dir)
-            res_milp = compare_solvers(data, continuous_relaxation=False, log_dir=log_dir)
+            res_relax = compare_solvers(data, continuous_relaxation=True, log_dir=cmp_logs)
+            res_milp = compare_solvers(data, continuous_relaxation=False, log_dir=cmp_logs)
             _print_comparison_table(data["name"], res_relax, res_milp)
-            print(f"Archivos log generados en: {log_dir}/")
+            _save_comparison(data, res_relax, res_milp, cmp_dir)
+            print(f"Tabla guardada en: {cmp_dir}/comparacion.csv y comparacion.json")
+            print(f"Archivos log generados en: {cmp_logs}/")
             return
 
         # Modo 1: Resolucion MILP directa con solver seleccionado

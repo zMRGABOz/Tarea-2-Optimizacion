@@ -1,0 +1,43 @@
+
+Gurobi 13.0.3 (win64) logging started Sat Nov 14 22:07:56 2026
+
+Set parameter LogFile to value "results\tc3\muestras_B_dispersa\logs\gurobi_relax.log"
+Gurobi Optimizer version 13.0.3 build v13.0.3rc0 (win64 - Windows 11+.0 (26300.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i5-12450H, instruction set [SSE2|AVX|AVX2]
+Thread count: 8 physical cores, 12 logical processors, using up to 12 threads
+
+Optimize a model with 1952 rows, 1752 columns and 8531 nonzeros (Min)
+Model fingerprint: 0x25caa2dc
+Model has 1638 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [1e+00, 4e+02]
+  Objective range  [2e+00, 9e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+02]
+
+Presolve removed 140 rows and 39 columns
+Presolve time: 0.00s
+Presolved: 1812 rows, 1713 columns, 8133 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    0.0000000e+00   1.201875e+02   0.000000e+00      0s
+     196    6.4868000e+02   0.000000e+00   0.000000e+00      0s
+
+Use crossover to convert LP symmetric solution to basic solution...
+Crossover log...
+
+       0 DPushes remaining with DInf 0.0000000e+00                 0s
+
+      31 PPushes remaining with PInf 0.0000000e+00                 0s
+       0 PPushes remaining with PInf 0.0000000e+00                 0s
+
+  Push phase complete: Pinf 0.0000000e+00, Dinf 2.3093750e+00      0s
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+     324    6.4868000e+02   0.000000e+00   2.309375e+00      0s
+Crossover time: 0.00 seconds (0.00 work units)
+     334    6.4868000e+02   0.000000e+00   0.000000e+00      0s
+
+Solved in 334 iterations and 0.01 seconds (0.01 work units)
+Optimal objective  6.486800000e+02
