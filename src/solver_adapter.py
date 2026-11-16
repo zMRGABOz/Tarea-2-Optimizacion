@@ -12,6 +12,7 @@ from typing import Any, Dict, Optional, Tuple
 
 from src.model import (
     build_convrp_model as build_gurobi_model,
+    configure_solver_parameters as configure_gurobi_params,
     export_lp as export_gurobi_lp
 )
 from src.cplex_model import (
@@ -131,11 +132,22 @@ def _solve_gurobi(
         Path(log_file).parent.mkdir(parents=True, exist_ok=True)
         run_params["LogFile"] = str(log_file)
 
-    model, refs = build_gurobi_model(
-        data,
-        params=run_params,
-        continuous_relaxation=continuous_relaxation
-    )
+    # Usar model.relax() segun el enunciado
+    if continuous_relaxation:
+        milp_model, _ = build_gurobi_model(data, continuous_relaxation=False)
+        model = milp_model.relax()
+        milp_model.dispose()
+        configure_gurobi_params(model, run_params)
+        model.update()
+        refs: Dict[str, Any] = {}
+
+    else:
+        model, refs = build_gurobi_model(
+            data,
+            params=run_params,
+            continuous_relaxation=False
+        )
+
     model.optimize()
 
     status_str = _GUROBI_STATUS_MAP.get(model.Status, str(model.Status))
@@ -183,7 +195,8 @@ def _solve_cplex(
 
     if log_file:
         Path(log_file).parent.mkdir(parents=True, exist_ok=True)
-        sol = model.solve(log_output=str(log_file))
+        with open(log_file,"w",encoding="utf-8") as log_f:
+            sol = model.solve(log_output=log_f)
     else:
         sol = model.solve()
 
@@ -273,7 +286,7 @@ def compare_solvers(
     m_grb.dispose()
 
     res_cpx, _, _ = solve_model("cplex", data, continuous_relaxation=continuous_relaxation, log_file=log_cpx)
-
+    
     return {
         "gurobi": res_grb,
         "cplex": res_cpx,
